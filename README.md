@@ -1,6 +1,6 @@
 # NTC Visualiser
 
-A 3D door and kitchen visualiser built as a concept for Naeem Trading. Customers design a front door or kitchen in the browser, see it on a photo of their own house, and book a free home visit.
+A 3D door and kitchen visualiser built as a white-label concept (currently branded "Demo Vendor"). Customers design a front door or kitchen in the browser, see it on a photo of their own house, and book a free home visit.
 
 **Live:** https://ntc-visualiser.vercel.app
 
@@ -12,7 +12,7 @@ A 3D door and kitchen visualiser built as a concept for Naeem Trading. Customers
 - **On my house.** Take or upload a photo of your house and place the door on it, or try a sample house.
 - **Snapshot.** Save an image of your design.
 - **Booking flow.** Book a free visit with your name, WhatsApp number, city, area or society, house number and a preferred time to call.
-- **English and Urdu.** Urdu text uses the Noto Nastaliq Urdu font.
+- **English UI**, white-label branding set in the `BRANDS` config.
 - **Mobile-first.** The layout is responsive and works on phones.
 
 ## Realistic version
@@ -39,7 +39,7 @@ The HDRIs and textures in `assets/` are from [Poly Haven](https://polyhaven.com)
 The app is a single static `index.html` with no build step.
 
 - three.js `0.170.0`, loaded from jsDelivr through an import map
-- Google Fonts: Geist, Instrument Serif and Noto Nastaliq Urdu
+- Google Fonts: Manrope
 - Hosted on Vercel; `vercel.json` sets clean URLs and no-cache headers
 
 ## Run locally
