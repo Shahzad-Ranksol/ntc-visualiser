@@ -71,7 +71,7 @@ body.phone .top{padding-top:46px}
 .chip svg{width:14px;height:14px}
 .vswitch{font-size:12px;font-weight:500;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:inherit;text-decoration:none;white-space:nowrap}
 .vswitch:hover{background:rgba(0,0,0,.05)}
-@media (max-width:560px){.top .right .stepinfo{display:none}}
+@container app (max-width:560px){.top .right .stepinfo{display:none}}
 .chip.on{background:var(--ink);color:#fff}
 .chip.accent{margin-left:auto;background:var(--accent);color:#fff}
 .chip.accent.done{background:var(--ok)}
@@ -290,7 +290,7 @@ body{background:#ECEBE8;letter-spacing:-.005em}
 .chip:hover{box-shadow:0 6px 16px -6px rgba(0,0,0,.3);transform:translateY(-1px)}
 .chip.on,.chip.accent{background:var(--ink);color:#fff}
 .chip.accent.done{background:var(--ok)}
-.hint{border-radius:8px;background:rgba(20,20,20,.7)}
+.hint{border-radius:8px;background:rgba(20,20,20,.7);white-space:nowrap}
 .loading{background:#E4E2DE;animation:none}
 .loading .msg::before{content:"";display:block;width:26px;height:26px;margin:0 auto 12px;border-radius:50%;border:2px solid rgba(0,0,0,.1);border-top-color:var(--ink);animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -333,7 +333,8 @@ h2{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.15}
 .sheet header h3 em{font-family:var(--sans);font-style:normal;color:var(--muted);font-size:1em}
 .success .big{border-radius:16px}
 @container app (min-width:880px){.viewer,.panel{border-radius:18px}.sheet{border-radius:18px}h1{font-size:40px}.trust b{font-weight:700;letter-spacing:-.03em}}
-@media (max-width:560px){.chip{padding:7px 9px;font-size:11px;gap:5px}.chip svg{width:13px;height:13px}.vbar{gap:5px;left:10px;right:10px;bottom:10px}.vtag{font-size:11px}}
+@container app (max-width:370px){.vbar .chip:not(.accent):not([data-act="prender"]){font-size:0;gap:0;padding:8px 9px}.vbar .chip svg{width:14px;height:14px}.brand .bsub{display:none}}
+@container app (max-width:560px){.chip{padding:7px 9px;font-size:11px;gap:5px}.chip svg{width:13px;height:13px}.vbar{gap:5px;left:10px;right:10px;bottom:10px}.vtag{font-size:11px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
