@@ -1,6 +1,6 @@
 # NTC Visualiser
 
-A 3D door and kitchen visualiser built as a white-label concept (currently branded "Demo Vendor"). Customers design a front door or kitchen in the browser, see it on a photo of their own house, and book a free home visit.
+A 3D door and kitchen visualiser built as a white-label concept (currently branded "Ashford Living"). Customers design a front door or kitchen in the browser, see it on a photo of their own house, and book a free home visit.
 
 **Live:** https://ntc-visualiser.vercel.app
 
@@ -12,7 +12,7 @@ A 3D door and kitchen visualiser built as a white-label concept (currently brand
 - **On my house.** Take or upload a photo of your house and place the door on it, or try a sample house.
 - **Snapshot.** Save an image of your design.
 - **Booking flow.** Book a free visit with your name, WhatsApp number, city, area or society, house number and a preferred time to call.
-- **English UI**, white-label branding set in the `BRANDS` config.
+- **English UI and US dollar pricing**, white-label branding set in the `BRANDS` config. Amounts use international formatting ($42.5K, $1.25M).
 - **Mobile-first.** The layout is responsive and works on phones.
 
 ## Realistic version

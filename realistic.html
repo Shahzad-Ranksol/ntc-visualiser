@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Demo Vendor — Realistic 3D Configurator</title>
+<title>Ashford Living — Realistic 3D Configurator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -272,7 +272,7 @@ h2 em{font-size:1.15em}
 .ai-note svg{width:16px;height:16px;color:var(--accent);flex:0 0 auto;margin-top:1px}
 .sheet footer{display:flex;gap:10px;padding:12px 18px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
 
-/* ================= premium theme · Demo Vendor ================= */
+/* ================= premium theme · Ashford Living ================= */
 :root{--bg:#F7F7F5;--card:#fff;--ink:#141414;--ink2:#3B3B3B;--muted:#76746F;--line:#E4E3DF;--soft:#F0EFEC;--accent:#7C5E33;--ok:#2F6B4F;--r:12px;
   --shadow:0 1px 1px rgba(20,20,20,.04),0 12px 32px -12px rgba(20,20,20,.12);
   --sans:'Manrope',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;--serif:var(--sans);--ease:cubic-bezier(.2,.7,.2,1)}
@@ -352,16 +352,16 @@ h2{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.15}
 </head>
 <body>
 <div class="demo" role="toolbar" aria-label="Demo controls">
-  <span class="lbl hide-s">Concept demo for Demo Vendor</span>
+  <span class="lbl hide-s">Concept demo for Ashford Living</span>
   <div class="seg" id="prodSeg"><button data-prod="door" class="on">Front doors</button><button data-prod="kitchen">Kitchens</button></div>
   <div class="dev"><span class="lbl">View as</span><div class="seg" id="devSeg"><button data-dev="desktop" class="on">Website</button><button data-dev="phone">Mobile app</button></div></div>
 </div>
 <div class="shell">
 <div class="app" id="app" data-product="door">
   <header class="top">
-    <div class="brand"><span class="mark" id="brandMark">DV</span><span id="brandName">Demo Vendor</span><span class="bsub" id="brandSub">Doors</span></div>
+    <div class="brand"><span class="mark" id="brandMark">AL</span><span id="brandName">Ashford Living</span><span class="bsub" id="brandSub">Doors</span></div>
     <nav class="nav"><a href="#doors" onclick="return false">How it works</a><a href="#doors" onclick="return false">Gallery</a><a href="#doors" onclick="return false">Reviews</a><a href="#doors" onclick="return false">Showroom</a></nav>
-    <div class="right"><a class="vswitch" href="/">Classic view</a><span class="stepinfo" id="stepInfo">Takes 60 seconds</span><span class="phone-cta" id="phoneCta">+92 300 0000000</span></div>
+    <div class="right"><a class="vswitch" href="/">Classic view</a><span class="stepinfo" id="stepInfo">Takes 60 seconds</span><span class="phone-cta" id="phoneCta">+1 (555) 010-0000</span></div>
   </header>
   <div class="progress"><i id="prog"></i></div>
   <div class="main">
@@ -389,22 +389,23 @@ h2{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.15}
 /* =====================================================================
    CONFIG — swap brand, currency and catalogue for each client
    ===================================================================== */
-const fmt = n => 'Rs ' + Math.round(n).toLocaleString('en-IN');
-const lakh = n => { const v=n/1e5; return (v>=10?v.toFixed(1):v.toFixed(2)).replace(/0+$/,'').replace(/\.$/,''); };
-const fmtK = n => n>=1e5 ? `Rs ${lakh(n)} lakh` : `Rs ${(Math.round(n/100)/10).toString()}k`;
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const trim = (v,d) => v.toFixed(d).replace(/\.?0+$/,'');
+/* short form: $850 · $42.5K · $1.25M (international millions, never lakh) */
+const fmtK = n => n>=1e6 ? `$${trim(n/1e6,2)}M` : n>=1e4 ? `$${trim(n/1e3,1)}K` : fmt(n);
 /* Brand block: swap name, phone and trust line per client */
 const BRANDS = {
-  door:    { mark:'DV', name:'Demo Vendor', sub:'Doors',    phone:'+92 300 0000000', trust:[['Up to 5-yr','warranty'],['Malaysian','& Italian doors'],['Made by','professionals']] },
-  kitchen: { mark:'DV', name:'Demo Vendor', sub:'Kitchens', phone:'+92 300 0000000', trust:[['DuPont Corian®','fabricators'],['500+','kitchens fitted'],['Up to 5-yr','warranty']] }
+  door:    { mark:'AL', name:'Ashford Living', sub:'Doors',    phone:'+1 (555) 010-0000', trust:[['Up to 5-yr','warranty'],['Malaysian','& Italian doors'],['Made by','professionals']] },
+  kitchen: { mark:'AL', name:'Ashford Living', sub:'Kitchens', phone:'+1 (555) 010-0000', trust:[['DuPont Corian®','fabricators'],['500+','kitchens fitted'],['Up to 5-yr','warranty']] }
 };
 /* Catalogue modelled on a Lahore supplier's live range (Malaysian & Italian doors, Italian handles,
    digital locks, DuPont Corian, soft-close kitchen accessories). Items marked est are estimates. */
 const DOOR = {
   ranges:[
-    {id:'mapao',name:'Mapao solid door',d:'Malaysian solid wood, raised panels',geo:'classic',price:{84:50000,96:56000}},
-    {id:'engineered',name:'Solid engineered',d:'Malaysian, warp-free, flush grooves',geo:'modern',price:{84:78000,96:85000}},
-    {id:'glass',name:'Glass panel door',d:'Solid frame with tall glass panel',geo:'glazed',price:{84:88000,96:95000}},
-    {id:'italian',name:'Italian classico',d:'Lacquered classic panels',geo:'italian',price:{84:285000,96:310000}},
+    {id:'mapao',name:'Mapao solid door',d:'Malaysian solid wood, raised panels',geo:'classic',price:{84:2400,96:2700}},
+    {id:'engineered',name:'Solid engineered',d:'Malaysian, warp-free, flush grooves',geo:'modern',price:{84:3200,96:3500}},
+    {id:'glass',name:'Glass panel door',d:'Solid frame with tall glass panel',geo:'glazed',price:{84:3600,96:3900}},
+    {id:'italian',name:'Italian classico',d:'Lacquered classic panels',geo:'italian',price:{84:7800,96:8500}},
   ],
   heights:[{id:'84',name:'84″ (7 ft)'},{id:'96',name:'96″ (8 ft)'}],
   finishes:[
@@ -417,63 +418,63 @@ const DOOR = {
     {id:'satinOak',name:'Dark Satin Oak',hex:'#6E4F37',wood:true,p:0},
     {id:'cinnamon',name:'Cinnamon Walnut',hex:'#7A4B2D',wood:true,p:0},
     {id:'wenge',name:'Wenge Oak',hex:'#3B2A20',wood:true,p:0},
-    {id:'lucido',name:'Lucido white gloss',hex:'#F1EFEA',wood:false,p:45000},
+    {id:'lucido',name:'Lucido white gloss',hex:'#F1EFEA',wood:false,p:900},
   ],
-  glass:[{id:'solid',name:'No glass',p:0},{id:'clear',name:'Clear',p:0},{id:'satin',name:'Frosted',p:0},{id:'reeded',name:'Fluted',p:8000},{id:'jaali',name:'Jaali etched',p:16000},{id:'stained',name:'Stained',p:22000}],
+  glass:[{id:'solid',name:'No glass',p:0},{id:'clear',name:'Clear',p:0},{id:'satin',name:'Frosted',p:0},{id:'reeded',name:'Fluted',p:250},{id:'jaali',name:'Jaali etched',p:450},{id:'stained',name:'Stained',p:650}],
   frames:[{id:'match',name:'Match door'},{id:'dark',name:'Dark wood',hex:'#4A3022',wood:true},{id:'white',name:'White',hex:'#F1EFE9'},{id:'black',name:'Black',hex:'#1E1F21'}],
   handles:[
-    {id:'plaza',name:'Plaza',d:'Italian lever · brass plated',fin:'brass',kind:'lever',p:30855},
-    {id:'gogo',name:'Go-Go',d:'Italian lever · gold',fin:'gold',kind:'lever',p:21175},
-    {id:'pipe',name:'Pipe',d:'Italian lever · matt black',fin:'blackf',kind:'lever',p:19500},
-    {id:'matrice',name:'Matrice',d:'Italian lever · anthracite',fin:'anthracite',kind:'lever',p:18500},
-    {id:'preso',name:'Preso',d:'Italian lever · chrome',fin:'chrome',kind:'lever',p:18500},
-    {id:'hygge',name:'Hygge',d:'Italian lever · satin nickel',fin:'nickel',kind:'lever',p:18750},
-    {id:'ke13',name:'KE-13L entrance set',d:'Long plate · antique brass',fin:'antique',kind:'plate',p:35695},
+    {id:'plaza',name:'Plaza',d:'Italian lever · brass plated',fin:'brass',kind:'lever',p:420},
+    {id:'gogo',name:'Go-Go',d:'Italian lever · gold',fin:'gold',kind:'lever',p:310},
+    {id:'pipe',name:'Pipe',d:'Italian lever · matt black',fin:'blackf',kind:'lever',p:280},
+    {id:'matrice',name:'Matrice',d:'Italian lever · anthracite',fin:'anthracite',kind:'lever',p:260},
+    {id:'preso',name:'Preso',d:'Italian lever · chrome',fin:'chrome',kind:'lever',p:260},
+    {id:'hygge',name:'Hygge',d:'Italian lever · satin nickel',fin:'nickel',kind:'lever',p:270},
+    {id:'ke13',name:'KE-13L entrance set',d:'Long plate · antique brass',fin:'antique',kind:'plate',p:480},
   ],
   locks:[
     {id:'none',name:'Standard mortise lock',d:'Key lock, included',p:0},
-    {id:'e50',name:'Emaks Prime E50',d:'Fingerprint, PIN, card, app',p:40500,col:'black'},
-    {id:'e55',name:'Emaks Prime E55',d:'Fingerprint, PIN, card',p:45500,col:'black'},
-    {id:'cortex',name:'ASSA ABLOY Lockwood Cortex',d:'PIN + card, fire-tested',p:48500,col:'silver'},
-    {id:'yale',name:'Yale YDM 7116A',d:'App, Wi-Fi bridge, auto lock',p:140000,col:'black'},
-    {id:'galaxy30',name:'Emaks Galaxy 30',d:'Wi-Fi, live talk, fingerprint',p:195000,col:'black'},
+    {id:'e50',name:'Emaks Prime E50',d:'Fingerprint, PIN, card, app',p:390,col:'black'},
+    {id:'e55',name:'Emaks Prime E55',d:'Fingerprint, PIN, card',p:450,col:'black'},
+    {id:'cortex',name:'ASSA ABLOY Lockwood Cortex',d:'PIN + card, fire-tested',p:520,col:'silver'},
+    {id:'yale',name:'Yale YDM 7116A',d:'App, Wi-Fi bridge, auto lock',p:690,col:'black'},
+    {id:'galaxy30',name:'Emaks Galaxy 30',d:'Wi-Fi, live talk, fingerprint',p:890,col:'black'},
   ],
-  extras:{ double:{name:'Double door',d:'Two leaves for a grand entrance',p:0}, side:{name:'Side glass panels',d:'Brighter entrance, wider look',p:38000},
-    top:{name:'Roshandan (top light)',d:'Glass panel above the door',p:24000}, plate:{name:'Name plate',d:'Granite plate with gold lettering',p:6500},
-    termite:{name:'Anti-termite + weather coat',d:'Treated for heat, rain and deemak',p:9500} },
-  install:22000
+  extras:{ double:{name:'Double door',d:'Two leaves for a grand entrance',p:0}, side:{name:'Side glass panels',d:'Brighter entrance, wider look',p:1200},
+    top:{name:'Roshandan (top light)',d:'Glass panel above the door',p:750}, plate:{name:'Name plate',d:'Granite plate with gold lettering',p:180},
+    termite:{name:'Anti-termite + weather coat',d:'Treated for heat, rain and deemak',p:220} },
+  install:450
 };
 const KITCHEN = {
   layouts:[
-    {id:'straight',name:'Straight run',d:'One wall, simple and clean',lo:350000,hi:460000},
-    {id:'l',name:'L-shape',d:'Two walls, great flow',lo:520000,hi:680000},
-    {id:'u',name:'U-shape',d:'Three sides, max storage',lo:650000,hi:850000},
-    {id:'island',name:'L-shape + island',d:'Room to cook and gather',lo:820000,hi:1080000},
+    {id:'straight',name:'Straight run',d:'One wall, simple and clean',lo:18000,hi:24000},
+    {id:'l',name:'L-shape',d:'Two walls, great flow',lo:26000,hi:34000},
+    {id:'u',name:'U-shape',d:'Three sides, max storage',lo:32000,hi:42000},
+    {id:'island',name:'L-shape + island',d:'Room to cook and gather',lo:42000,hi:56000},
   ],
   fronts:[{id:'slab',name:'UV high-gloss',d:'Flat, modern, easy clean',pct:0},{id:'shaker',name:'Shaker lacquer',d:'Framed, matt, classic',pct:.12}],
   colours:[
     {id:'snow',name:'White gloss',hex:'#F1EFEA',p:0},{id:'cappuccino',name:'Cappuccino',hex:'#C9B49A',p:0},{id:'sage',name:'Sage',hex:'#A7B898',p:0},{id:'emerald',name:'Emerald',hex:'#1F5A49',p:0},
-    {id:'navy',name:'Navy',hex:'#26375E',p:0},{id:'charcoal',name:'Charcoal',hex:'#3D3F43',p:0},{id:'ash',name:'Ash wood',wood:'oak',p:45000},{id:'walnut',name:'Walnut',wood:'walnut',p:45000},
+    {id:'navy',name:'Navy',hex:'#26375E',p:0},{id:'charcoal',name:'Charcoal',hex:'#3D3F43',p:0},{id:'ash',name:'Ash wood',wood:'oak',p:2400},{id:'walnut',name:'Walnut',wood:'walnut',p:2400},
   ],
   worktops:[
-    {id:'designer',name:'Corian Designer White',p:85000,c:'#F4F3EF',spk:.15},
-    {id:'cameo',name:'Corian Cameo White',p:85000,c:'#EEE7D8',spk:.35},
-    {id:'dove',name:'Corian Dove',p:95000,c:'#B9B2A7',spk:.6},
-    {id:'onyx',name:'Corian Gray Onyx',p:105000,c:'#8D8C88',spk:1},
-    {id:'nocturne',name:'Corian Deep Nocturne',p:125000,c:'#1E1F22',spk:.5},
-    {id:'montelli',name:'DuPont Montelli quartz',p:110000,marble:true},
-    {id:'galaxy',name:'Black galaxy granite',p:38000,galaxy:true},
+    {id:'designer',name:'Corian Designer White',p:4200,c:'#F4F3EF',spk:.15},
+    {id:'cameo',name:'Corian Cameo White',p:4200,c:'#EEE7D8',spk:.35},
+    {id:'dove',name:'Corian Dove',p:4600,c:'#B9B2A7',spk:.6},
+    {id:'onyx',name:'Corian Gray Onyx',p:5000,c:'#8D8C88',spk:1},
+    {id:'nocturne',name:'Corian Deep Nocturne',p:5800,c:'#1E1F22',spk:.5},
+    {id:'montelli',name:'DuPont Montelli quartz',p:5400,marble:true},
+    {id:'galaxy',name:'Black galaxy granite',p:2600,galaxy:true},
   ],
   handles:[
-    {id:'goldbar',name:'Gold bar',p:9000,fin:'brass',kind:'bar'},{id:'blackbar',name:'Matt black bar',p:7000,fin:'black',kind:'bar'},
-    {id:'goldknob',name:'Gold knob',p:6000,fin:'brass',kind:'knob'},{id:'chromeknob',name:'Chrome knob',p:0,fin:'chrome',kind:'knob'},
-    {id:'none',name:'Handleless (gola)',p:28000,fin:'steel',kind:'none'},
+    {id:'goldbar',name:'Gold bar',p:450,fin:'brass',kind:'bar'},{id:'blackbar',name:'Matt black bar',p:380,fin:'black',kind:'bar'},
+    {id:'goldknob',name:'Gold knob',p:320,fin:'brass',kind:'knob'},{id:'chromeknob',name:'Chrome knob',p:0,fin:'chrome',kind:'knob'},
+    {id:'none',name:'Handleless (gola)',p:1400,fin:'steel',kind:'none'},
   ],
-  extras:{ lighting:{name:'LED profile lighting',d:'Warm strip under wall cabinets',p:18000},
-    chimney:{name:'5-burner hob + slanted hood',d:'Glass hob and auto-clean chimney',p:135000},
-    masala:{name:'Multipurpose pull-out SP-6060',d:'Soft-close spice and bottle rack',p:12400},
-    basket:{name:'Wire basket drawers WB-6060',d:'Soft-close, 900 mm, under the hob',p:15600},
-    pantry:{name:'Tall larder unit LU-6062',d:'600 mm pull-out larder in a tall cabinet',p:83500} }
+  extras:{ lighting:{name:'LED profile lighting',d:'Warm strip under wall cabinets',p:900},
+    chimney:{name:'5-burner hob + slanted hood',d:'Glass hob and auto-clean chimney',p:3800},
+    masala:{name:'Multipurpose pull-out SP-6060',d:'Soft-close spice and bottle rack',p:650},
+    basket:{name:'Wire basket drawers WB-6060',d:'Soft-close, 900 mm, under the hob',p:780},
+    pantry:{name:'Tall larder unit LU-6062',d:'600 mm pull-out larder in a tall cabinet',p:2900} }
 };
 const FIN = { brass:'#C9A24D', gold:'#D4AF37', chrome:'#D6DADE', black:'#202122', blackf:'#232425', anthracite:'#3B3D40', nickel:'#ABA69D', antique:'#8C6A3A', steel:'#B9BDC1' };
 
@@ -504,15 +505,15 @@ function doorPrice(d=S.door){
   return t;
 }
 const effGlass = d => d.range==='glass'&&d.glass==='solid' ? 'satin' : d.glass;
-const monthly = t => Math.ceil(t/12/100)*100;
+const monthly = t => Math.ceil(t/12/5)*5;
 function kitchenPrice(k=S.kitchen){
   const L = byId(KITCHEN.layouts,k.layout); const f = byId(KITCHEN.fronts,k.front).pct;
   let add = byId(KITCHEN.colours,k.colour).p + byId(KITCHEN.worktops,k.worktop).p + byId(KITCHEN.handles,k.handle).p;
   for(const [key,on] of Object.entries(k.extras)) if(on) add += KITCHEN.extras[key].p;
-  const r = n => Math.round(n/5000)*5000;
+  const r = n => Math.round(n/500)*500;
   return [r(L.lo*(1+f)+add), r(L.hi*(1+f)+add*1.12)];
 }
-const kRange = () => { const [a,b]=kitchenPrice(); return `Rs ${lakh(a)} – ${lakh(b)} lakh`; };
+const kRange = () => { const [a,b]=kitchenPrice(); return `${fmtK(a)} – ${fmtK(b)}`; };
 
 /* =====================================================================
    PROCEDURAL TEXTURES (canvas) — used by 3D and by the UI swatches
@@ -744,7 +745,7 @@ function doorStepHTML(id){
 function kitStepHTML(id){
   const k=S.kitchen;
   if(id==='layout') return head('Choose your <em>layout</em>','Go for the shape closest to your room. We measure properly on the visit.')+`<div class="grid g2">${KITCHEN.layouts.map(l=>`
-    <button class="opt ${k.layout===l.id?'on':''}" data-act="set" data-k="layout" data-val="${l.id}">${tickH}<div class="th">${layoutSVG(l.id)}</div><div class="n">${l.name}</div><div class="d">${l.d}</div><div class="p">from Rs ${lakh(l.lo)} lakh</div></button>`).join('')}</div>`;
+    <button class="opt ${k.layout===l.id?'on':''}" data-act="set" data-k="layout" data-val="${l.id}">${tickH}<div class="th">${layoutSVG(l.id)}</div><div class="n">${l.name}</div><div class="d">${l.d}</div><div class="p">from ${fmtK(l.lo)}</div></button>`).join('')}</div>`;
   if(id==='doors') return head('Pick your <em>cabinets</em>','Finish first, then the colour.')+`<div class="grid g2">${KITCHEN.fronts.map(f=>`
     <button class="opt ${k.front===f.id?'on':''}" data-act="set" data-k="front" data-val="${f.id}" style="flex-direction:row;align-items:center;gap:10px">${tickH}<svg viewBox="0 0 30 40" style="width:28px;height:38px;flex:0 0 auto"><rect x="1" y="1" width="28" height="38" rx="1.5" fill="${kHex()}" stroke="rgba(0,0,0,.2)"/>${f.id==='shaker'?'<rect x="6" y="6" width="18" height="28" fill="none" stroke="rgba(0,0,0,.25)"/>':'<path d="M4 6l8-3" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>'}</svg><span><div class="n">${f.name}</div><div class="d">${f.d}</div></span></button>`).join('')}</div>
     <div class="label">Colour</div><div class="grid g4">${KITCHEN.colours.map(c=>`
