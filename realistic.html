@@ -395,21 +395,21 @@ const trim = (v,d) => v.toFixed(d).replace(/\.?0+$/,'');
 const fmtK = n => n>=1e6 ? `$${trim(n/1e6,2)}M` : n>=1e4 ? `$${trim(n/1e3,1)}K` : fmt(n);
 /* Brand block: swap name, phone and trust line per client */
 const BRANDS = {
-  door:    { mark:'AL', name:'Ashford Living', sub:'Doors',    phone:'+1 (555) 010-0000', trust:[['Up to 5-yr','warranty'],['Malaysian','& Italian doors'],['Made by','professionals']] },
+  door:    { mark:'AL', name:'Ashford Living', sub:'Doors',    phone:'+1 (555) 010-0000', trust:[['Up to 5-yr','warranty'],['Solid wood','& Italian doors'],['Made by','professionals']] },
   kitchen: { mark:'AL', name:'Ashford Living', sub:'Kitchens', phone:'+1 (555) 010-0000', trust:[['DuPont Corian®','fabricators'],['500+','kitchens fitted'],['Up to 5-yr','warranty']] }
 };
-/* Catalogue modelled on a Lahore supplier's live range (Malaysian & Italian doors, Italian handles,
+/* Catalogue modelled on a premium supplier's range (solid wood & Italian doors, Italian handles,
    digital locks, DuPont Corian, soft-close kitchen accessories). Items marked est are estimates. */
 const DOOR = {
   ranges:[
-    {id:'mapao',name:'Mapao solid door',d:'Malaysian solid wood, raised panels',geo:'classic',price:{84:2400,96:2700}},
-    {id:'engineered',name:'Solid engineered',d:'Malaysian, warp-free, flush grooves',geo:'modern',price:{84:3200,96:3500}},
+    {id:'mapao',name:'Classic solid door',d:'Solid hardwood, raised panels',geo:'classic',price:{84:2400,96:2700}},
+    {id:'engineered',name:'Solid engineered',d:'Warp-free core, flush grooves',geo:'modern',price:{84:3200,96:3500}},
     {id:'glass',name:'Glass panel door',d:'Solid frame with tall glass panel',geo:'glazed',price:{84:3600,96:3900}},
     {id:'italian',name:'Italian classico',d:'Lacquered classic panels',geo:'italian',price:{84:7800,96:8500}},
   ],
   heights:[{id:'84',name:'84″ (7 ft)'},{id:'96',name:'96″ (8 ft)'}],
   finishes:[
-    {id:'mapaoDark',name:'Dark Wood Mapao',hex:'#5B3A25',wood:true,p:0},
+    {id:'mapaoDark',name:'Dark Mahogany',hex:'#5B3A25',wood:true,p:0},
     {id:'beige',name:'Light Beige',hex:'#CDB38F',wood:true,p:0},
     {id:'darkWalnut',name:'Dark Walnut',hex:'#46301F',wood:true,p:0},
     {id:'creed',name:'Walnut Creed Oak',hex:'#8B5F3D',wood:true,p:0},
@@ -420,7 +420,7 @@ const DOOR = {
     {id:'wenge',name:'Wenge Oak',hex:'#3B2A20',wood:true,p:0},
     {id:'lucido',name:'Lucido white gloss',hex:'#F1EFEA',wood:false,p:900},
   ],
-  glass:[{id:'solid',name:'No glass',p:0},{id:'clear',name:'Clear',p:0},{id:'satin',name:'Frosted',p:0},{id:'reeded',name:'Fluted',p:250},{id:'jaali',name:'Jaali etched',p:450},{id:'stained',name:'Stained',p:650}],
+  glass:[{id:'solid',name:'No glass',p:0},{id:'clear',name:'Clear',p:0},{id:'satin',name:'Frosted',p:0},{id:'reeded',name:'Fluted',p:250},{id:'jaali',name:'Lattice etched',p:450},{id:'stained',name:'Stained',p:650}],
   frames:[{id:'match',name:'Match door'},{id:'dark',name:'Dark wood',hex:'#4A3022',wood:true},{id:'white',name:'White',hex:'#F1EFE9'},{id:'black',name:'Black',hex:'#1E1F21'}],
   handles:[
     {id:'plaza',name:'Plaza',d:'Italian lever · brass plated',fin:'brass',kind:'lever',p:420},
@@ -440,8 +440,8 @@ const DOOR = {
     {id:'galaxy30',name:'Emaks Galaxy 30',d:'Wi-Fi, live talk, fingerprint',p:890,col:'black'},
   ],
   extras:{ double:{name:'Double door',d:'Two leaves for a grand entrance',p:0}, side:{name:'Side glass panels',d:'Brighter entrance, wider look',p:1200},
-    top:{name:'Roshandan (top light)',d:'Glass panel above the door',p:750}, plate:{name:'Name plate',d:'Granite plate with gold lettering',p:180},
-    termite:{name:'Anti-termite + weather coat',d:'Treated for heat, rain and deemak',p:220} },
+    top:{name:'Transom (top light)',d:'Glass panel above the door',p:750}, plate:{name:'Name plate',d:'Granite plate with gold lettering',p:180},
+    termite:{name:'Anti-termite + weather coat',d:'Treated for heat, rain and termites',p:220} },
   install:450
 };
 const KITCHEN = {
@@ -468,7 +468,7 @@ const KITCHEN = {
   handles:[
     {id:'goldbar',name:'Gold bar',p:450,fin:'brass',kind:'bar'},{id:'blackbar',name:'Matt black bar',p:380,fin:'black',kind:'bar'},
     {id:'goldknob',name:'Gold knob',p:320,fin:'brass',kind:'knob'},{id:'chromeknob',name:'Chrome knob',p:0,fin:'chrome',kind:'knob'},
-    {id:'none',name:'Handleless (gola)',p:1400,fin:'steel',kind:'none'},
+    {id:'none',name:'Handleless (J-pull)',p:1400,fin:'steel',kind:'none'},
   ],
   extras:{ lighting:{name:'LED profile lighting',d:'Warm strip under wall cabinets',p:900},
     chimney:{name:'5-burner hob + slanted hood',d:'Glass hob and auto-clean chimney',p:3800},
@@ -484,10 +484,10 @@ const FIN = { brass:'#C9A24D', gold:'#D4AF37', chrome:'#D6DADE', black:'#202122'
 const S = {
   product:'door', device:'desktop',
   door:{ step:0, range:'mapao', height:'96', finish:'creed', glass:'solid', frame:'match', double:false, side:false, top:false,
-         handle:'plaza', lock:'e50', plate:true, termite:true, number:'27-B', family:'Malik House', open:false, evening:false, photo:null, done:null },
+         handle:'plaza', lock:'e50', plate:true, termite:true, number:'1428', family:'The Carters', open:false, evening:false, photo:null, done:null },
   kitchen:{ step:0, layout:'island', front:'slab', colour:'cappuccino', worktop:'designer', handle:'goldbar',
             extras:{lighting:true, chimney:true, masala:true, basket:false, pantry:false}, evening:false, snaps:[], done:null },
-  lead:{ name:'', phone:'', city:'Lahore', area:'', time:'Evening', consent:true },
+  lead:{ name:'', phone:'', city:'New York', area:'', time:'Evening', consent:true },
 };
 const P = () => S[S.product];
 const byId = (arr,id) => arr.find(o=>o.id===id);
@@ -627,7 +627,7 @@ function T_porcelain(){ return TXC.porc ||= (()=>{const n=noiseGen(17),N=512;ret
 function plateCanvas(name,num,gold){const c=cv(512,280),x=c.getContext('2d');x.drawImage(T_galaxy(),0,0,512,280,0,0,512,280);x.fillStyle='rgba(0,0,0,.35)';x.fillRect(0,0,512,280);
   x.strokeStyle=gold;x.lineWidth=4;x.strokeRect(14,14,484,252);x.fillStyle=gold;x.textAlign='center';x.textBaseline='middle';
   x.font='italic 74px "Instrument Serif", Georgia, serif';x.fillText(name||'',256,num?116:140,450);
-  if(num){x.font='600 34px Geist, sans-serif';x.fillText('House No. '+num,256,206,440)}return c}
+  if(num){x.font='600 34px Geist, sans-serif';x.fillText(num,256,206,440)}return c}
 // UI thumbnails from canvases
 const THUMB={}; function thumb(key,c){ if(THUMB[key]) return THUMB[key]; const t=cv(120,120),x=t.getContext('2d');x.drawImage(c,0,0,c.width,c.height,0,0,120,120);return THUMB[key]=t.toDataURL('image/jpeg',.85); }
 const worktopCanvas = id => { const w=byId(KITCHEN.worktops,id); return w.galaxy?T_galaxy():w.marble?T_marble():T_corianC(w.c,w.spk); };
@@ -710,7 +710,7 @@ function introHTML(){
   const d=S.product==='door', B=BRANDS[S.product];
   const trust=`<div class="trust">${B.trust.map(([a,b])=>`<div><b>${a}</b>${b}</div>`).join('')}</div>`;
   return d ? `<div class="eyebrow">Front door configurator</div><h1>Design your <em>new main door</em></h1>
-    <p class="lead">Pick a Malaysian or Italian door, then the wood, glass, handle and digital lock. See it on a photo of your own house. Fixed price, installed.</p>
+    <p class="lead">Pick a solid wood or Italian door, then the wood, glass, handle and digital lock. See it on a photo of your own house. Fixed price, installed.</p>
     <div class="pills"><span class="pill">${IC.shield}Solid &amp; engineered wood</span><span class="pill">${IC.star}Italian hardware</span><span class="pill">${IC.clock}Installed in one day</span></div>${trust}`
   : `<div class="eyebrow">Kitchen configurator</div><h1>Design your <em>dream kitchen</em></h1>
     <p class="lead">Choose your layout, cabinets, Corian worktop and accessories, and see it built in 3D. Get a guide price in about a minute, then book a free design visit.</p>
@@ -719,15 +719,15 @@ function introHTML(){
 function head(t,s){return `<div class="eyebrow">Step ${P().step} of ${steps().length}</div><h2>${t}</h2><p class="sub">${s}</p>`}
 function doorStepHTML(id){
   const d=S.door, col=doorHex(), R=byId(DOOR.ranges,d.range), F=byId(DOOR.finishes,d.finish);
-  if(id==='range') return head('Choose your <em>door</em>','Malaysian solid and engineered doors, or Italian classics. All made to measure.')+`<div class="grid g2">${DOOR.ranges.map(r=>`
+  if(id==='range') return head('Choose your <em>door</em>','Solid hardwood and engineered doors, or Italian classics. All made to measure.')+`<div class="grid g2">${DOOR.ranges.map(r=>`
     <button class="opt ${d.range===r.id?'on':''}" data-act="set" data-k="range" data-val="${r.id}">${tickH}<div class="th">${doorSVG(r.geo,col,r.id==='glass'||d.glass!=='solid')}</div><div class="n">${r.name}</div><div class="d">${r.d}</div><div class="p">from ${fmt(r.price[84])}</div></button>`).join('')}</div>
     <div class="label">Height</div><div class="chips">${DOOR.heights.map(h=>`<button class="${d.height===h.id?'on':''}" data-act="set" data-k="height" data-val="${h.id}">${h.name} · ${fmt(R.price[h.id])}</button>`).join('')}</div>`;
-  if(id==='finish') return head('Choose your <em>finish</em>','Real wood veneers from the Malaysian range, or Italian gloss lacquer.')+`<div class="grid g4">${DOOR.finishes.map(f=>`
+  if(id==='finish') return head('Choose your <em>finish</em>','Real wood veneers, or Italian gloss lacquer.')+`<div class="grid g4">${DOOR.finishes.map(f=>`
     <button class="sw ${d.finish===f.id?'on':''}" data-act="set" data-k="finish" data-val="${f.id}"><span class="dot" style="${finDot(f)}"></span><span class="n">${f.name}</span>${f.p?`<span class="p">+${fmtK(f.p)}</span>`:''}</button>`).join('')}</div>`;
   if(id==='glass'){ const opts=DOOR.glass.filter(g=>!(d.range==='glass'&&g.id==='solid')), cur=effGlass(d);
-    return head('Choose your <em>glass</em>', d.range==='glass'?'Toughened safety glass. Jaali and stained designs are hand-finished.':'Keep it solid, or add glass panels. Toughened and double glazed.')+`<div class="grid g3">${opts.map(g=>`
+    return head('Choose your <em>glass</em>', d.range==='glass'?'Toughened safety glass. Lattice and stained designs are hand-finished.':'Keep it solid, or add glass panels. Toughened and double glazed.')+`<div class="grid g3">${opts.map(g=>`
     <button class="opt ${cur===g.id?'on':''}" data-act="set" data-k="glass" data-val="${g.id}">${tickH}<div class="th sm">${g.id==='solid'?`<div style="width:100%;height:100%;${finDot(F)};background-size:cover"></div>`:`<img alt="" src="${thumb('g'+g.id,T_glass(g.id))}">`}</div><div class="n">${g.name}</div><div class="p">${pTxt(g.p)}</div></button>`).join('')}</div>`; }
-  if(id==='frame') return head('Chaukhat and <em>glass panels</em>','The frame (chaukhat), double doors, side panels and roshandan.')+`<div class="label" style="margin-top:4px">Chaukhat colour</div><div class="grid g4">${DOOR.frames.map(f=>`
+  if(id==='frame') return head('Frame and <em>glass panels</em>','The door frame, double doors, side panels and transom.')+`<div class="label" style="margin-top:4px">Frame colour</div><div class="grid g4">${DOOR.frames.map(f=>`
     <button class="sw ${d.frame===f.id?'on':''}" data-act="set" data-k="frame" data-val="${f.id}"><span class="dot" style="${f.id==='match'?finDot(F):finDot(f)};background-size:cover"></span><span class="n">${f.name}</span></button>`).join('')}</div>
     <div class="label">Size and glass panels</div>${tog('double',d.double,{...DOOR.extras.double,p:R.price[d.height]+F.p+DOOR.install})}${tog('side',d.side,DOOR.extras.side)}${tog('top',d.top,DOOR.extras.top)}`;
   if(id==='hardware'){ const lockOn=d.lock!=='none';
@@ -736,10 +736,10 @@ function doorStepHTML(id){
     <div class="label">Handle</div>${lockOn?`<p class="note" style="margin-top:-4px">Your digital lock comes with its own handle. Choose “Standard mortise lock” to pick an Italian handle instead.</p>`:`<div class="grid g2">${DOOR.handles.map(h=>`
     <button class="opt row ${d.handle===h.id?'on':''}" data-act="set" data-k="handle" data-val="${h.id}">${tickH}<span class="ic">${doorHandleSVG(h.kind,FIN[h.fin])}</span><span style="min-width:0"><div class="n">${h.name}</div><div class="d">${h.d}</div><div class="p">${fmt(h.p)}</div></span></button>`).join('')}</div>`}`; }
   if(id==='touches') return head('Finishing <em>touches</em>','Add your house number and family name for the name plate.')+`
-    <div class="f2"><div class="field"><label for="numIn">House no.</label><input id="numIn" maxlength="6" autocomplete="off" value="${esc(d.number)}" placeholder="27-B"></div>
-    <div class="field"><label for="famIn">Family / house name</label><input id="famIn" maxlength="18" autocomplete="off" value="${esc(d.family)}" placeholder="Malik House"></div></div>
+    <div class="f2"><div class="field"><label for="numIn">House no.</label><input id="numIn" maxlength="6" autocomplete="off" value="${esc(d.number)}" placeholder="1428"></div>
+    <div class="field"><label for="famIn">Family name</label><input id="famIn" maxlength="18" autocomplete="off" value="${esc(d.family)}" placeholder="The Carters"></div></div>
     ${tog('plate',d.plate,DOOR.extras.plate)}${tog('termite',d.termite,DOOR.extras.termite)}
-    <p class="note">Chaukhat, hinges, threshold and installation (${fmt(DOOR.install)} per leaf) are included in the price.</p>`;
+    <p class="note">Frame, hinges, threshold and installation (${fmt(DOOR.install)} per leaf) are included in the price.</p>`;
   if(id==='review') return reviewHTML();
 }
 function kitStepHTML(id){
@@ -762,15 +762,15 @@ const kHex=()=>{const c=byId(KITCHEN.colours,S.kitchen.colour);return c.hex||(c.
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
 function summaryRows(){
-  if(S.product==='door'){const d=S.door,R=byId(DOOR.ranges,d.range),n=d.double?2:1,ex=[d.double&&'Double door',d.side&&'Side glass panels',d.top&&'Roshandan',d.termite&&'Anti-termite coat'].filter(Boolean);
+  if(S.product==='door'){const d=S.door,R=byId(DOOR.ranges,d.range),n=d.double?2:1,ex=[d.double&&'Double door',d.side&&'Side glass panels',d.top&&'Transom',d.termite&&'Anti-termite coat'].filter(Boolean);
     const hw=d.lock==='none'?`${byId(DOOR.handles,d.handle).name} handle + mortise lock`:byId(DOOR.locks,d.lock).name;
-    return [['Door',`${R.name}, ${d.height}″`],['Finish',byId(DOOR.finishes,d.finish).name],['Glass',byId(DOOR.glass,effGlass(d)).name],['Chaukhat',byId(DOOR.frames,d.frame).name],
-      ['Handle & lock',hw],['Name plate',d.plate?[d.number.trim()&&'House '+d.number.trim(),d.family.trim()].filter(Boolean).join(' · ')||'Yes':'—'],['Extras',ex.join(', ')||'None'],['Chaukhat + installation',fmt(DOOR.install*n)]];}
+    return [['Door',`${R.name}, ${d.height}″`],['Finish',byId(DOOR.finishes,d.finish).name],['Glass',byId(DOOR.glass,effGlass(d)).name],['Frame',byId(DOOR.frames,d.frame).name],
+      ['Handle & lock',hw],['Name plate',d.plate?[d.number.trim()&&'No. '+d.number.trim(),d.family.trim()].filter(Boolean).join(' · ')||'Yes':'—'],['Extras',ex.join(', ')||'None'],['Frame + installation',fmt(DOOR.install*n)]];}
   const k=S.kitchen,ex=Object.entries(k.extras).filter(([,v])=>v).map(([key])=>KITCHEN.extras[key].name);
   return [['Layout',byId(KITCHEN.layouts,k.layout).name],['Cabinets',`${byId(KITCHEN.fronts,k.front).name}, ${byId(KITCHEN.colours,k.colour).name}`],
     ['Worktop',byId(KITCHEN.worktops,k.worktop).name],['Handles',byId(KITCHEN.handles,k.handle).name],['Extras',ex.join(', ')||'None']];
 }
-const CITIES=['Lahore','Islamabad','Rawalpindi','Karachi','Faisalabad','Multan','Sialkot','Gujranwala','Peshawar','Other'];
+const CITIES=['New York','Los Angeles','Chicago','Houston','Dallas','Miami','Atlanta','Phoenix','Seattle','Boston','Other'];
 function reviewHTML(){
   const d=S.product==='door', L=S.lead;
   let photo='';
@@ -783,19 +783,19 @@ function reviewHTML(){
   return head(d?'Your <em>new door</em>':'Your <em>kitchen</em>', d?'Check the details, then book a free measurement. Nothing to pay until we measure.':'Here’s your design. Book a free visit and a designer will bring Corian and cabinet samples.')+
   `<div class="summary">${summaryRows().map(([a,b])=>`<div class="r"><span>${a}</span><span>${esc(b)}</span></div>`).join('')}</div>${photo}${pc}
   <form id="leadForm" novalidate>
-    <div class="field" data-f="name"><label for="fName">Your name</label><input id="fName" name="name" autocomplete="name" value="${esc(L.name)}" placeholder="Ayesha Khan"><span class="e">Please add your name</span></div>
-    <div class="field" data-f="phone"><label for="fPhone">Mobile number (WhatsApp)</label><input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" value="${esc(L.phone)}" placeholder="0300 1234567"><span class="e">Enter a mobile number like 0300 1234567</span></div>
+    <div class="field" data-f="name"><label for="fName">Your name</label><input id="fName" name="name" autocomplete="name" value="${esc(L.name)}" placeholder="Jane Carter"><span class="e">Please add your name</span></div>
+    <div class="field" data-f="phone"><label for="fPhone">Mobile number</label><input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" value="${esc(L.phone)}" placeholder="(555) 123-4567"><span class="e">Enter a phone number like (555) 123-4567</span></div>
     <div class="f2"><div class="field"><label for="fCity">City</label><select id="fCity" name="city">${CITIES.map(c=>`<option ${L.city===c?'selected':''}>${c}</option>`).join('')}</select></div>
-    <div class="field" data-f="area"><label for="fArea">Area / society</label><input id="fArea" name="area" autocomplete="address-level3" value="${esc(L.area)}" placeholder="DHA Phase 6"><span class="e">Add your area</span></div></div>
+    <div class="field" data-f="area"><label for="fArea">ZIP code</label><input id="fArea" name="area" inputmode="numeric" autocomplete="postal-code" maxlength="10" value="${esc(L.area)}" placeholder="10001"><span class="e">Add your ZIP code</span></div></div>
     <div class="field"><label>Best time to call</label><div class="chips sm">${['Morning','Afternoon','Evening'].map(t=>`<button type="button" class="${L.time===t?'on':''}" data-act="time" data-val="${t}">${t}</button>`).join('')}</div></div>
-    <label class="consent"><input type="checkbox" id="fConsent" ${L.consent?'checked':''}> Send my design and quote on WhatsApp. We never share your number.</label>
+    <label class="consent"><input type="checkbox" id="fConsent" ${L.consent?'checked':''}> Text and email me my design and quote. We never share your details.</label>
   </form>
-  ${d?'<p class="note">*Illustrative 12-month instalment plan. Final price confirmed after a free measurement. Concept pricing — to be confirmed by NTC.</p>':'<p class="note">Guide price includes cabinets, worktop, fitting and removal of your old kitchen. Appliances shown are optional. Concept pricing — to be confirmed by NTC.</p>'}`;
+  ${d?'<p class="note">*Illustrative 12-month instalment plan. Final price confirmed after a free measurement. Concept pricing — to be confirmed by Ashford Living.</p>':'<p class="note">Guide price includes cabinets, worktop, fitting and removal of your old kitchen. Appliances shown are optional. Concept pricing — to be confirmed by Ashford Living.</p>'}`;
 }
 function miniStage(ph){return `<div class="mini-stage"><img class="bg" alt="Your house" src="${ph.src}"><div class="ov" style="left:${ph.x}%;top:${ph.y}%;width:${ph.w}%;transform:perspective(900px) rotateY(${ph.tilt}deg);filter:brightness(${ph.bright}%)"><img alt="" src="${ph.door}"></div></div>`}
 function successHTML(ref){
   const d=S.product==='door', nm=esc(S.lead.name.split(' ')[0]||'there');
-  return `<div class="success"><div class="big">${IC.tick}</div><h2>You’re booked in, <em>${nm}</em></h2><p class="sub" style="margin:6px 0 0">Reference <b style="color:var(--ink)">${ref}</b>. We’ve sent your design on WhatsApp to ${esc(S.lead.phone)}.</p></div>
+  return `<div class="success"><div class="big">${IC.tick}</div><h2>You’re booked in, <em>${nm}</em></h2><p class="sub" style="margin:6px 0 0">Reference <b style="color:var(--ink)">${ref}</b>. We’ve texted your design to ${esc(S.lead.phone)}.</p></div>
   <div class="steps-next"><div><b>1</b><span>${d?'Our team calls you':'A designer calls you'} ${S.lead.time==='Evening'?'this evening':'within one working day'} to fix a free ${d?'measurement':'home'} visit in ${esc(S.lead.city)}.</span></div>
   <div><b>2</b><span>${d?'We measure the opening and confirm your fixed price. An advance confirms the order.':'We measure your kitchen, bring Corian and cabinet samples, and give you a fixed quote.'}</span></div>
   <div><b>3</b><span>${d?'Your door is delivered and installed in one day, with up to a 5-year warranty.':'Installation takes 3 to 4 weeks after you approve the design.'}</span></div></div>
@@ -879,7 +879,7 @@ function submitLead(){
   const L=S.lead,f=$('#leadForm'); if(!f) return;
   L.name=$('#fName').value.trim();L.phone=$('#fPhone').value.trim();L.area=$('#fArea').value.trim();L.city=$('#fCity').value;L.consent=$('#fConsent').checked;
   const dg=L.phone.replace(/\D/g,'');
-  const ok={name:L.name.length>1,phone:/^03\d{9}$/.test(dg)||/^923\d{9}$/.test(dg),area:L.area.length>1};
+  const ok={name:L.name.length>1,phone:/^1?\d{10}$/.test(dg)||(L.phone.startsWith('+')&&dg.length>=8&&dg.length<=15),area:/^\d{5}(-?\d{4})?$/.test(L.area)};
   let first=null;for(const [k,v] of Object.entries(ok)){const el=f.querySelector(`[data-f="${k}"]`);el.classList.toggle('err',!v);if(!v&&!first)first=el}
   if(first){first.querySelector('input').focus();first.scrollIntoView({block:'center',behavior:'smooth'});return}
   // In production: POST {design, price, lead, photo} to the CRM or a WhatsApp Business API webhook here.

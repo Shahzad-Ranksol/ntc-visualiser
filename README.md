@@ -11,8 +11,8 @@ A 3D door and kitchen visualiser built as a white-label concept (currently brand
 - **Day and evening lighting.** Preview the design in daylight or at night.
 - **On my house.** Take or upload a photo of your house and place the door on it, or try a sample house.
 - **Snapshot.** Save an image of your design.
-- **Booking flow.** Book a free visit with your name, WhatsApp number, city, area or society, house number and a preferred time to call.
-- **English UI and US dollar pricing**, white-label branding set in the `BRANDS` config. Amounts use international formatting ($42.5K, $1.25M).
+- **Booking flow.** Book a free visit with your name, mobile number, city, ZIP code and a preferred time to call.
+- **US English UI and US dollar pricing**, white-label branding set in the `BRANDS` config. Amounts use international formatting ($42.5K, $1.25M).
 - **Mobile-first.** The layout is responsive and works on phones.
 
 ## Realistic version
