@@ -1283,7 +1283,9 @@ async function init3D(){
       if(force||s!==sig.kitchen){sig.kitchen=s;if(KS.root){KS.scene.remove(KS.root);disposeTree(KS.root)}const {g,refs}=buildKitchen(k);KS.root=g;KS.refs=refs;KS.scene.add(g)}}
   }
   let pend=false; V.update=()=>{if(pend)return;pend=true;requestAnimationFrame(()=>{pend=false;rebuild()})};
-  V.camForStep=(anim)=>{const c=CAMS[S.product][stepKey()]||CAMS[S.product].intro;const pos=fitDist(c[0],c[1]);if(anim)camTo(pos,c[1]);else{cam.position.set(...pos);ctl.target.set(...c[1]);tw=null}};
+  V.camForStep=(anim)=>{const c=CAMS[S.product][stepKey()]||CAMS[S.product].intro;let pos=fitDist(c[0],c[1]);
+    if(S.product==='kitchen'&&stepKey()==='intro'){const t=c[1],d=Math.hypot(pos[0]-t[0],pos[1]-t[1],pos[2]-t[2]),k=ctl.maxDistance*.99/d;pos=[t[0]+(pos[0]-t[0])*k,t[1]+(pos[1]-t[1])*k,t[2]+(pos[2]-t[2])*k]} // open fully zoomed out
+    if(anim)camTo(pos,c[1]);else{cam.position.set(...pos);ctl.target.set(...c[1]);tw=null}};
   V.setProduct=p=>{active=p;applyLimits(p);rebuild();V.camForStep(false);ctl.update()};
   V.snapshot=()=>{if(S.product!=='kitchen')return null;R.render(KS.scene,cam);const c=R.domElement,t=cv(480,Math.round(480*c.height/c.width));t.getContext('2d').drawImage(c,0,0,t.width,t.height);return t.toDataURL('image/jpeg',.85)};
   V.doorPNG=()=>{ if(!DS.refs) return null; rebuild(); const refs=DS.refs, hr=refs.hinges.map(([h])=>h.rotation.y); refs.hinges.forEach(([h])=>h.rotation.y=0); refs.env.visible=false;
