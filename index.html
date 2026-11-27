@@ -61,10 +61,11 @@ body.phone .top{padding-top:46px}
 
 /* ---------- main ---------- */
 .main{flex:1;min-height:0;display:flex;flex-direction:column}
-.stage{flex:0 0 46%;min-height:230px;padding:12px 12px 0}
+.stage{flex:0 0 min(112cqw,62%);min-height:230px;padding:12px 12px 0}
 .viewer{position:relative;height:100%;border-radius:24px;overflow:hidden;background:#E6E0D6;isolation:isolate}
 .viewer canvas{display:block;width:100%!important;height:100%!important;touch-action:none;outline:none}
-.vtag{position:absolute;top:12px;left:12px;font-size:11.5px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--ink2);max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:3}
+.vtag{position:absolute;top:12px;left:12px;font-size:11.5px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--ink2);max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:3;transition:opacity .25s}
+.vtag.hide{opacity:0;pointer-events:none}
 .vbar{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:8px;z-index:3}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 2px rgba(0,0,0,.06);transition:background .2s,color .2s,transform .15s}
 .chip:active{transform:scale(.96)}
@@ -334,7 +335,7 @@ h2{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.15}
 .success .big{border-radius:16px}
 @container app (min-width:880px){.viewer,.panel{border-radius:18px}.sheet{border-radius:18px}h1{font-size:40px}.trust b{font-weight:700;letter-spacing:-.03em}}
 @container app (max-width:370px){.vbar .chip:not(.accent):not([data-act="prender"]){font-size:0;gap:0;padding:8px 9px}.vbar .chip svg{width:14px;height:14px}.brand .bsub{display:none}}
-@container app (max-width:560px){.chip{padding:7px 9px;font-size:11px;gap:5px}.chip svg{width:13px;height:13px}.vbar{gap:5px;left:10px;right:10px;bottom:10px}.vtag{font-size:11px}}
+@container app (max-width:560px){.chip{padding:7px 9px;font-size:11px;gap:5px}.chip svg{width:13px;height:13px}.vbar{gap:5px;left:10px;right:10px;bottom:10px}.vtag{font-size:11px;max-width:62%;padding:5px 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -1224,11 +1225,11 @@ async function init3D(){
       // door / sink / corner
       const f=frontPanel(rg,x0+w/2,.105+fh/2,w,fh,zf);handle(f,w,fh,'',x0<.7?'doorR':'doorL');
       if(s.t==='sink'){ const sx=x0+w/2;
-        box(.52,.006,.42,std('#A9ADB1',{metalness:1,roughness:.35}),sx,WT+.042,.3,rg);box(.44,.004,.34,std('#6E7276',{metalness:1,roughness:.45}),sx,WT+.0455,.3,rg);
+        box(.52,.006,.42,std('#A9ADB1',{metalness:1,roughness:.35}),sx,WT+.042,.36,rg);box(.44,.004,.34,std('#6E7276',{metalness:1,roughness:.45}),sx,WT+.0455,.36,rg);
         const tapM=k.handle==='none'?steel:metalM;
-        const curve=new T.CatmullRomCurve3([new T.Vector3(sx,WT+.04,.08),new T.Vector3(sx,WT+.28,.08),new T.Vector3(sx,WT+.36,.14),new T.Vector3(sx,WT+.33,.24),new T.Vector3(sx,WT+.24,.27)]);
-        const tap=new T.Mesh(new T.TubeGeometry(curve,40,.011,10,false),tapM);rg.add(tap);const tb=cyl(.022,.024,.04,tapM,16);tb.position.set(sx,WT+.06,.08);rg.add(tb);
-        const lv=box(.012,.012,.07,tapM,sx+.035,WT+.12,.08,rg);lv.rotation.x=-.4;
+        const curve=new T.CatmullRomCurve3([new T.Vector3(sx,WT+.04,.17),new T.Vector3(sx,WT+.28,.17),new T.Vector3(sx,WT+.36,.23),new T.Vector3(sx,WT+.33,.32),new T.Vector3(sx,WT+.24,.35)]);
+        const tap=new T.Mesh(new T.TubeGeometry(curve,40,.011,10,false),tapM);rg.add(tap);const tb=cyl(.022,.024,.04,tapM,16);tb.position.set(sx,WT+.06,.17);rg.add(tb);
+        const lv=box(.012,.012,.07,tapM,sx+.035,WT+.12,.17,rg);lv.rotation.x=-.4;
         if(false){const bx=sx+.2;const b=cyl(.016,.018,.2,steel,14);b.position.set(bx,WT+.14,.09);rg.add(b);const sp2=cyl(.01,.01,.09,steel,10);sp2.rotation.x=Math.PI/2;sp2.position.set(bx,WT+.23,.13);rg.add(sp2);
           const rr=new T.Mesh(new T.TorusGeometry(.018,.004,6,16),std('#C9372C',{roughness:.4}));rr.rotation.x=Math.PI/2;rr.position.set(bx,WT+.2,.09);rg.add(rr)}
       }
@@ -1311,7 +1312,9 @@ async function init3D(){
   /* ========================= LOOP ========================= */
   const ro=new ResizeObserver(()=>{const w=el.clientWidth,h=el.clientHeight;if(!w||!h)return;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();if(!tw&&!userMoved)V.camForStep(false)});ro.observe(el);
   let userMoved=false;
-  ctl.addEventListener('start',()=>{tw=null;userMoved=true;$('#hint').classList.add('gone')});
+  let tagT=0;
+  ctl.addEventListener('start',()=>{tw=null;userMoved=true;$('#hint').classList.add('gone');clearTimeout(tagT);$('#vtag').classList.add('hide')});
+  ctl.addEventListener('end',()=>{clearTimeout(tagT);tagT=setTimeout(()=>$('#vtag').classList.remove('hide'),2500)});
   const origCam=V.camForStep;V.camForStep=a=>{userMoved=false;origCam(a)};
   let last=performance.now();
   function loop(now){
