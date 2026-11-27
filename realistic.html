@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ashford Living — Realistic 3D Configurator</title>
+<title>Native Coast — Realistic 3D Configurator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -273,7 +273,7 @@ h2 em{font-size:1.15em}
 .ai-note svg{width:16px;height:16px;color:var(--accent);flex:0 0 auto;margin-top:1px}
 .sheet footer{display:flex;gap:10px;padding:12px 18px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
 
-/* ================= premium theme · Ashford Living ================= */
+/* ================= premium theme · Native Coast ================= */
 :root{--bg:#F7F7F5;--card:#fff;--ink:#141414;--ink2:#3B3B3B;--muted:#76746F;--line:#E4E3DF;--soft:#F0EFEC;--accent:#7C5E33;--ok:#2F6B4F;--r:12px;
   --shadow:0 1px 1px rgba(20,20,20,.04),0 12px 32px -12px rgba(20,20,20,.12);
   --sans:'Manrope',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;--serif:var(--sans);--ease:cubic-bezier(.2,.7,.2,1)}
@@ -346,6 +346,8 @@ h2{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.15}
 .sheet header h3 em{font-family:var(--sans);font-style:normal;color:var(--muted);font-size:1em}
 .success .big{border-radius:16px}
 @container app (min-width:880px){.viewer,.panel{border-radius:18px}.sheet{border-radius:18px}h1{font-size:40px}.trust b{font-weight:700;letter-spacing:-.03em}}
+@container app (max-width:440px){.brand .bsub{font-size:12px;padding-left:8px}}
+@container app (max-width:400px){.brand .bsub{display:none}}
 @container app (max-width:370px){.vbar .chip:not(.accent):not([data-act="prender"]){font-size:0;gap:0;padding:8px 9px}.vbar .chip svg{width:14px;height:14px}.brand .bsub{display:none}}
 @container app (max-width:560px){.chip{padding:7px 9px;font-size:11px;gap:5px}.chip svg{width:13px;height:13px}.vbar{gap:5px;left:10px;right:10px;bottom:10px}.vtag{font-size:11px;max-width:62%;padding:5px 9px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -353,16 +355,13 @@ h2{font-weight:700;letter-spacing:-.03em;font-size:24px;line-height:1.15}
 </head>
 <body>
 <div class="demo" role="toolbar" aria-label="Demo controls">
-  <span class="lbl hide-s">Concept demo for Ashford Living</span>
   <div class="seg" id="prodSeg"><button data-prod="door" class="on">Front doors</button><button data-prod="kitchen">Kitchens</button></div>
-  <div class="dev"><span class="lbl">View as</span><div class="seg" id="devSeg"><button data-dev="desktop" class="on">Website</button><button data-dev="phone">Mobile app</button></div></div>
 </div>
 <div class="shell">
 <div class="app" id="app" data-product="door">
   <header class="top">
-    <div class="brand"><span class="mark" id="brandMark">AL</span><span id="brandName">Ashford Living</span><span class="bsub" id="brandSub">Doors</span></div>
-    <nav class="nav"><a href="#doors" onclick="return false">How it works</a><a href="#doors" onclick="return false">Gallery</a><a href="#doors" onclick="return false">Reviews</a><a href="#doors" onclick="return false">Showroom</a></nav>
-    <div class="right"><a class="vswitch" href="/">Classic view</a><span class="stepinfo" id="stepInfo">Takes 60 seconds</span><span class="phone-cta" id="phoneCta">+1 (555) 010-0000</span></div>
+    <div class="brand"><span class="mark" id="brandMark">NC</span><span id="brandName">Native Coast</span><span class="bsub" id="brandSub">Doors</span></div>
+    <div class="right"><a class="vswitch" href="/">Classic view</a><span class="stepinfo" id="stepInfo">Takes 60 seconds</span></div>
   </header>
   <div class="progress"><i id="prog"></i></div>
   <div class="main">
@@ -396,8 +395,8 @@ const trim = (v,d) => v.toFixed(d).replace(/\.?0+$/,'');
 const fmtK = n => n>=1e6 ? `$${trim(n/1e6,2)}M` : n>=1e4 ? `$${trim(n/1e3,1)}K` : fmt(n);
 /* Brand block: swap name, phone and trust line per client */
 const BRANDS = {
-  door:    { mark:'AL', name:'Ashford Living', sub:'Doors',    phone:'+1 (555) 010-0000', trust:[['Up to 5-yr','warranty'],['Solid wood','& Italian doors'],['Made by','professionals']] },
-  kitchen: { mark:'AL', name:'Ashford Living', sub:'Kitchens', phone:'+1 (555) 010-0000', trust:[['DuPont Corian®','fabricators'],['500+','kitchens fitted'],['Up to 5-yr','warranty']] }
+  door:    { mark:'NC', name:'Native Coast', sub:'Doors',    phone:'+1 (555) 010-0000', trust:[['Up to 5-yr','warranty'],['Solid wood','& Italian doors'],['Made by','professionals']] },
+  kitchen: { mark:'NC', name:'Native Coast', sub:'Kitchen Appliances', phone:'+1 (555) 010-0000', trust:[['DuPont Corian®','fabricators'],['500+','kitchens fitted'],['Up to 5-yr','warranty']] }
 };
 /* Catalogue modelled on a premium supplier's range (solid wood & Italian doors, Italian handles,
    digital locks, DuPont Corian, soft-close kitchen accessories). Items marked est are estimates. */
@@ -791,7 +790,7 @@ function reviewHTML(){
     <div class="field"><label>Best time to call</label><div class="chips sm">${['Morning','Afternoon','Evening'].map(t=>`<button type="button" class="${L.time===t?'on':''}" data-act="time" data-val="${t}">${t}</button>`).join('')}</div></div>
     <label class="consent"><input type="checkbox" id="fConsent" ${L.consent?'checked':''}> Text and email me my design and quote. We never share your details.</label>
   </form>
-  ${d?'<p class="note">*Illustrative 12-month instalment plan. Final price confirmed after a free measurement. Concept pricing — to be confirmed by Ashford Living.</p>':'<p class="note">Guide price includes cabinets, worktop, fitting and removal of your old kitchen. Appliances shown are optional. Concept pricing — to be confirmed by Ashford Living.</p>'}`;
+  ${d?'<p class="note">*Illustrative 12-month instalment plan. Final price confirmed after a free measurement. Concept pricing — to be confirmed by Native Coast.</p>':'<p class="note">Guide price includes cabinets, worktop, fitting and removal of your old kitchen. Appliances shown are optional. Concept pricing — to be confirmed by Native Coast.</p>'}`;
 }
 function miniStage(ph){return `<div class="mini-stage"><img class="bg" alt="Your house" src="${ph.src}"><div class="ov" style="left:${ph.x}%;top:${ph.y}%;width:${ph.w}%;transform:perspective(900px) rotateY(${ph.tilt}deg);filter:brightness(${ph.bright}%)"><img alt="" src="${ph.door}"></div></div>`}
 function successHTML(ref){
@@ -816,7 +815,7 @@ function renderBar(){
 function renderChrome(){
   const st=P().step,n=steps().length,B=BRANDS[S.product];
   app.dataset.product=S.product;
-  $('#brandMark').textContent=B.mark;$('#brandName').textContent=B.name;$('#brandSub').textContent=B.sub;$('#phoneCta').textContent=B.phone;
+  $('#brandMark').textContent=B.mark;$('#brandName').textContent=B.name;$('#brandSub').textContent=B.sub;
   $('#stepInfo').textContent = P().done ? 'Booked' : st===0 ? 'Takes 60 seconds' : `Step ${st} of ${n}`;
   $('#prog').style.width = P().done ? '100%' : `${(st/n)*100}%`;
   document.querySelectorAll('#prodSeg button').forEach(b=>b.classList.toggle('on',b.dataset.prod===S.product));
@@ -888,8 +887,6 @@ function submitLead(){
   renderPanel(); toast('Booking request sent');
 }
 document.getElementById('prodSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setProduct(b.dataset.prod)});
-document.getElementById('devSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.device=b.dataset.dev;
-  document.body.classList.toggle('phone',S.device==='phone');document.querySelectorAll('#devSeg button').forEach(x=>x.classList.toggle('on',x===b))});
 function setProduct(p){ if(p!=='door'&&p!=='kitchen') return; S.product=p; try{ if(location.hash!=='#'+(p==='door'?'doors':'kitchens')) location.hash=p==='door'?'doors':'kitchens'; }catch(e){} renderPanel(); V.setProduct(p); }
 window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);const p=h==='kitchens'?'kitchen':h==='doors'?'door':null;if(p&&p!==S.product)setProduct(p)});
 

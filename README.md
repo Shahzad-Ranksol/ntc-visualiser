@@ -1,6 +1,6 @@
 # NTC Visualiser
 
-A 3D door and kitchen visualiser built as a white-label concept (currently branded "Ashford Living"). Customers design a front door or kitchen in the browser, see it on a photo of their own house, and book a free home visit.
+A 3D door and kitchen visualiser built as a white-label concept (currently branded "Native Coast"). Customers design a front door or kitchen in the browser, see it on a photo of their own house, and book a free home visit.
 
 **Live:** https://ntc-visualiser.vercel.app
 
