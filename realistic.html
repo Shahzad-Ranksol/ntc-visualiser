@@ -1335,8 +1335,8 @@ async function init3D(){
   function fitDist(pos,tgt){ // pull back a bit on narrow/portrait viewports
     const a=cam.aspect, f=a<1?1+(1-a)*.9:1; return [tgt[0]+(pos[0]-tgt[0])*f,tgt[1]+(pos[1]-tgt[1])*f,tgt[2]+(pos[2]-tgt[2])*f];}
   function applyLimits(p){
-    if(p==='door'){ctl.minAzimuthAngle=-.95;ctl.maxAzimuthAngle=.95;ctl.minPolarAngle=.55;ctl.maxPolarAngle=1.6;ctl.minDistance=1.1;ctl.maxDistance=7.5}
-    else {ctl.minAzimuthAngle=-.25;ctl.maxAzimuthAngle=1.5;ctl.minPolarAngle=.3;ctl.maxPolarAngle=1.42;ctl.minDistance=1.0;ctl.maxDistance=7.8}
+    if(p==='door'){ctl.minAzimuthAngle=-.95;ctl.maxAzimuthAngle=.95;ctl.minPolarAngle=.55;ctl.maxPolarAngle=1.6;ctl.minDistance=1.1;ctl.maxDistance=11}
+    else {ctl.minAzimuthAngle=-.25;ctl.maxAzimuthAngle=1.5;ctl.minPolarAngle=.02;ctl.maxPolarAngle=1.42;ctl.minDistance=1.5;ctl.maxDistance=14}
   }
 
   /* ========================= STATE → SCENE ========================= */
@@ -1455,7 +1455,7 @@ async function init3D(){
     if(S.product==='door'&&DS.refs){for(const [h,sg] of DS.refs.hinges){const tg=S.door.open?1.2*sg:0;h.rotation.y+=(tg-h.rotation.y)*Math.min(1,dt*4)}}
     R.toneMappingExposure=1-.12*Sx.eve;
     if(PT.active){ PT.step(); return; }
-    ctl.update(); renderFrame(Sx.scene);
+    ctl.update(); if(S.product==='kitchen'&&cam.position.y<1.25){cam.position.y=1.25;cam.lookAt(ctl.target)} renderFrame(Sx.scene);
   }
   applyLimits(S.product); rebuild(true); V.camForStep(false); ctl.update();
   V.ready=true; requestAnimationFrame(loop);
